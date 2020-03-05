@@ -1,7 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 using CalculatorLogic;
-using System.IO;
 using System;
 using System.Diagnostics;
 
