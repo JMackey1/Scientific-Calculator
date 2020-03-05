@@ -151,7 +151,6 @@ namespace ScientificCalculator
                     case Key.F1:
                         string basePath = AppContext.BaseDirectory;
                         string fileName = "Properties\\scientificCalculatorReadme.htm";
-                        results.Text = Path.GetFileName(AppContext.BaseDirectory);
                         Process.Start(@"cmd.exe", @"/c " + "\"" + basePath + fileName + "\"");
                         break;
                 }
