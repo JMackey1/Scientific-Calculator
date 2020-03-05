@@ -1,0 +1,361 @@
+﻿<Window x:Class="ScientificCalculator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ScientificCalculator"
+        mc:Ignorable="d"
+        Title="Scientific Calculator"
+        Height="400"
+        Width="500"
+        PreviewKeyDown="currentCalculation_KeyDown"
+        ResizeMode="CanMinimize">
+    <Window.Resources>
+        <SolidColorBrush x:Key="Background" Color="#FF4F4D76"></SolidColorBrush>
+        <SolidColorBrush x:Key="MouseOverColor" Color="#FF144D9E"></SolidColorBrush>
+        <Style x:Key="NormalStyle" TargetType="Button">
+            <Setter Property="Background" Value="#FF2E2B47"/>
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="FontSize" Value="16"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" 
+                                BorderBrush="Black" 
+                                BorderThickness="0">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{DynamicResource MouseOverColor}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="AccentStyle" TargetType="Button">
+            <Setter Property="Background" Value="#FF060525"/>
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="FontSize" Value="16"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" 
+                                BorderBrush="Black" 
+                                BorderThickness="0">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{DynamicResource MouseOverColor}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="Background" Value="{DynamicResource Background}"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="BorderThickness" Value="0"></Setter>
+            <Setter Property="FontSize" Value="16"></Setter>
+            <Setter Property="CaretBrush" Value="White"></Setter>
+        </Style>
+
+        <Style TargetType="Window">
+            <Setter Property="Background" Value="{DynamicResource Background}"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+        </Style>
+
+        <Style TargetType="Label">
+            <Setter Property="Background" Value="{DynamicResource Background}"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="FontSize" Value="16"></Setter>
+        </Style>
+
+        <Style TargetType="Canvas">
+            <Setter Property="Background" Value="{DynamicResource Background}"></Setter>
+        </Style>
+    </Window.Resources>
+    <Canvas>
+        <Label x:Name="label"
+               Content="History:" 
+               Width="218"
+               HorizontalContentAlignment="Center"/>
+        <TextBox x:Name="results"
+                 Canvas.Top="29"
+                 TextWrapping="Wrap"
+                 Width="218"
+                 Height="332"
+                 IsReadOnly="True"/>
+        <TextBox x:Name="currentCalculation"
+                 Canvas.Left="218"
+                 TextWrapping="Wrap"
+                 Width="263"
+                 Height="83"
+                 IsReadOnly="True" 
+                 IsReadOnlyCaretVisible="True"/>
+        <Grid Height="278"
+              Width="263"
+              Canvas.Left="218"
+              Canvas.Top="83">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Button x:Name="buttonOne"
+                    Content="1"
+                    Click="buttonOne_Click"
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    Style="{DynamicResource AccentStyle}"/>
+            <Button x:Name="buttonTwo"
+                    Content="2" 
+                    Click="buttonTwo_Click"
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    Style="{DynamicResource AccentStyle}"/>
+            <Button x:Name="buttonThree"
+                    Content="3" 
+                    Click="buttonThree_Click" 
+                    Grid.Row="3"
+                    Grid.Column="2"
+                    Style="{DynamicResource AccentStyle}"/>
+            <Button x:Name="buttonFour"
+                    Content="4" 
+                    Click="buttonFour_Click"
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Style="{DynamicResource AccentStyle}"/>
+            <Button x:Name="buttonFive"
+                    Content="5" 
+                    Click="buttonFive_Click"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Style="{DynamicResource AccentStyle}"/>
+            <Button x:Name="buttonSix"
+                    Content="6" 
+                    Click="buttonSix_Click" 
+                    Grid.Row="2"
+                    Grid.Column="2"
+                    Style="{DynamicResource AccentStyle}"/>
+            <Button x:Name="buttonSeven"
+                    Content="7" 
+                    Click="buttonSeven_Click"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Style="{DynamicResource AccentStyle}"/>
+            <Button x:Name="buttonEight"
+                    Content="8" 
+                    Click="buttonEight_Click" 
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Style="{DynamicResource AccentStyle}"/>
+            <Button x:Name="buttonNine"
+                    Content="9" 
+                    Click="buttonNine_Click" 
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    Style="{DynamicResource AccentStyle}"/>
+            <Button x:Name="buttonZero"
+                    Content="0" 
+                    Click="buttonZero_Click" 
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    Style="{DynamicResource AccentStyle}"/>
+            <Button x:Name="buttonDecimal"
+                    Content="." 
+                    Click="buttonDecimal_Click" 
+                    Grid.Row="4"
+                    Grid.Column="1"
+                    Style="{DynamicResource AccentStyle}"/>
+            <Button x:Name="buttonEqual"
+                    Content="=" 
+                    Click="buttonEqual_Click" 
+                    Grid.Row="4"
+                    Grid.Column="2"
+                    Style="{DynamicResource AccentStyle}"/>
+            <Button x:Name="buttonAdd" 
+                    Content="+" 
+                    Click="buttonAdd_Click"
+                    Grid.Row="4"
+                    Grid.Column="3"
+                    Style="{DynamicResource NormalStyle}"/>
+            <Button x:Name="buttonSubtract"
+                    Content="-" 
+                    Click="buttonSubtract_Click"
+                    Grid.Row="3"
+                    Grid.Column="3"
+                    Style="{DynamicResource NormalStyle}"/>
+            <Button x:Name="buttonMultiply" 
+                    Content="*" 
+                    Click="buttonMultiply_Click"
+                    Grid.Row="2"
+                    Grid.Column="3"
+                    Style="{DynamicResource NormalStyle}"/>
+            <Button x:Name="buttonDivide" 
+                    Content="/" 
+                    Click="buttonDivide_Click"
+                    Grid.Row="1"
+                    Grid.Column="3"
+                    Style="{DynamicResource NormalStyle}"/>
+            <Button x:Name="buttonNegation" 
+                    Content="±" 
+                    Click="buttonNegation_Click"
+                    Grid.Row="0"
+                    Grid.Column="3"
+                    Style="{DynamicResource NormalStyle}"/>
+            <Button x:Name="buttonC" 
+                    Content="C" 
+                    Click="buttonC_Click"
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    Style="{DynamicResource NormalStyle}"/>
+            <Button x:Name="buttonCE" 
+                    Content="CE" 
+                    Click="buttonCE_Click"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Style="{DynamicResource NormalStyle}"/>
+            <Button x:Name="buttonDelete" 
+                    Content="del" 
+                    Click="buttonDelete_Click"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Style="{DynamicResource NormalStyle}"/>
+            <Button x:Name="buttonLeftParen" 
+                    Content="(" 
+                    Click="buttonLeftParen_Click"
+                    Grid.Row="5"
+                    Grid.Column="0"
+                    Style="{DynamicResource NormalStyle}"/>
+            <Button x:Name="buttonRightParen" 
+                    Content=")" 
+                    Click="buttonRightParen_Click"
+                    Grid.Row="5"
+                    Grid.Column="1"
+                    Style="{DynamicResource NormalStyle}"/>
+            <Button x:Name="buttonPi" 
+                    Content="π"
+                    Click="buttonPi_Click"
+                    Grid.Row="5"
+                    Grid.Column="2"
+                    Style="{DynamicResource NormalStyle}"/>
+            <Button x:Name="buttonE" 
+                    Content="e"
+                    Click="buttonE_Click"
+                    Grid.Row="5"
+                    Grid.Column="3"
+                    Style="{DynamicResource NormalStyle}"/>
+            <Button x:Name="buttonPower" 
+                    Content="^" 
+                    Click="buttonPower_Click"
+                    Grid.Row="6"
+                    Grid.Column="0"
+                    Style="{DynamicResource NormalStyle}"/>
+            <Button x:Name="buttonRoot" 
+                    Content="√" 
+                    Click="buttonRoot_Click"
+                    Grid.Row="6"
+                    Grid.Column="1"
+                    Style="{DynamicResource NormalStyle}"/>
+            <Button x:Name="buttonModulus" 
+                    Content="%" 
+                    Click="buttonModulus_Click"
+                    Grid.Row="6"
+                    Grid.Column="2"
+                    Style="{DynamicResource NormalStyle}"/>
+            <Button x:Name="buttonFactorial" 
+                    Content="!" 
+                    Click="buttonFactorial_Click"
+                    Grid.Row="6"
+                    Grid.Column="3"
+                    Style="{DynamicResource NormalStyle}"/>
+            <Button x:Name="buttonLog"
+                    Content="log"
+                    Click="buttonLog_Click"
+                    Grid.Row="7"
+                    Grid.Column="0"
+                    Style="{DynamicResource NormalStyle}"/>
+            <Button x:Name="buttonLn"
+                    Content="ln" 
+                    Click="buttonLn_Click"
+                    Grid.Row="7"
+                    Grid.Column="1"
+                    Style="{DynamicResource NormalStyle}"/>
+            <Button x:Name="buttonFloor" 
+                    Content="floor" 
+                    Click="buttonFloor_Click"
+                    Grid.Row="7"
+                    Grid.Column="2"
+                    Style="{DynamicResource NormalStyle}"/>
+            <Button x:Name="buttonCeiling" 
+                    Content="ceiling" 
+                    Click="buttonCeiling_Click"
+                    Grid.Row="7"
+                    Grid.Column="3"
+                    Style="{DynamicResource NormalStyle}"/>
+            <Button x:Name="buttonSin" 
+                    Content="sin" 
+                    Click="buttonSin_Click"
+                    Grid.Row="8"
+                    Grid.Column="0"
+                    Style="{DynamicResource NormalStyle}"/>
+            <Button x:Name="buttonCos" 
+                    Content="cos" 
+                    Click="buttonCos_Click"
+                    Grid.Row="8"
+                    Grid.Column="1"
+                    Style="{DynamicResource NormalStyle}"/>
+            <Button x:Name="buttonTan" 
+                    Content="tan" 
+                    Click="buttonTan_Click"
+                    Grid.Row="8"
+                    Grid.Column="2"
+                    Style="{DynamicResource NormalStyle}"/>
+            <Button x:Name="buttonAnswer"
+                    Content="ans"
+                    Click="buttonAnswer_Click"    
+                    Grid.Row="8"
+                    Grid.Column="3"
+                    Style="{DynamicResource NormalStyle}"/>
+            <Button x:Name="buttonArcSin"
+                    Content="asin" 
+                    Click="buttonArcSin_Click"
+                    Grid.Row="9"
+                    Grid.Column="0"
+                    Style="{DynamicResource NormalStyle}"/>
+            <Button x:Name="buttonArcCos"
+                    Content="acos" 
+                    Click="buttonArcCos_Click"
+                    Grid.Row="9"
+                    Grid.Column="1"
+                    Style="{DynamicResource NormalStyle}"/>
+            <Button x:Name="buttonArcTan" 
+                    Content="atan" 
+                    Click="buttonArcTan_Click"
+                    Grid.Row="9"
+                    Grid.Column="2"
+                    Style="{DynamicResource NormalStyle}"/>
+        </Grid>
+    </Canvas>
+</Window>

@@ -1,0 +1,70 @@
+        .content-properties {
+	        background-color: hsl(233, 29%, 50%);
+            color: white;
+            word-wrap: break-word;
+            font-size: 2.5vw;
+        }
+
+        @media screen and (max-width: 600px) {
+            .content-properties {
+                font-size: 16px;
+            }
+        }
+
+        @media screen and (min-width: 800px) {
+            .content-properties {
+                font-size: 24px;
+            }
+        }
+
+        .main-layout {
+            display: flex;
+            flex-direction: row;
+            padding: 0%;
+            margin-top: -8px;
+            margin-left: -8px;
+            margin-bottom: -8px;
+        }
+
+        .bookmark-navigation {
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            background-color:hsl(233, 53%, 25%);
+        }
+
+        .bookmark-navigation a {
+            color: white;
+            display: block;
+            text-decoration: none;
+            padding-bottom: 7.5%;
+            padding-top: 7.5%;
+            padding-right: 10px;
+        }
+
+        .bookmark-navigation a:hover {
+            background-color: hsl(233, 29%, 50%);
+        }
+
+        .bookmark-navigation a.active {
+            background-color: rgb(71, 65, 105);
+        }
+
+        .content-layout {
+            display: flex;
+            flex-direction: column;
+            max-width: 100%;
+            margin-left: 10px;
+        }
+
+        .content-layout h1, h3 {
+            display: flex;
+            justify-content: center;
+            border: solid black 2px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            align-self: center;
+        }
